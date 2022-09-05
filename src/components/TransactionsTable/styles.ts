@@ -3,6 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin-top: 4rem;
 
+  .empty-list-message {
+    display: flex;
+    justify-content: center;
+
+    h4 {
+      color: var(--text-body);
+    }
+  }
+
   table {
     width: 100%;
     border-spacing: 0 0.5rem;
