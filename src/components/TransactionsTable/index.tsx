@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
-interface Transactions {
-  id: number,
-  title: string,
-  amount: number,
-  type: string,
-  category: string,
-  createdAt: string
-}
-
 export function TransactionsTable() {
-  const [transactions, setTransactions] = useState<Transactions[]>([]);
-  useEffect(() => {
-    api.get('/transactions')
-      .then(response => setTransactions(response.data.transactions));
-  },[])
+  const { transactions } = useTransactions();  
+
+  if(transactions.length === 0) {
+    return(
+      <Container>
+        <div className="empty-list-message">
+          <h4>Você não possue transações cadastradas!</h4>
+        </div>
+      </Container>
+    )
+  }
 
   return(
     <Container>
